@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 #include <time.h>
 
@@ -30,7 +29,7 @@ void handleOption1(int countPossibleSchedules, course_data **possibleSchedules, 
     printf("\nDo you want to save this in a txt file?\n");
     char option[3];
     scanf("%s", option);
-    
+
     if (strstr(upperCase(option), "Y") != NULL) {
         printf("\nEnter a name for the file\n");
         char filename[105];
@@ -298,7 +297,7 @@ void handleOption7(int countPossibleSchedules, course_data **possibleSchedules) 
 void processSchedules(int countPossibleSchedules, course_data **possibleSchedules, int countSubjects) {
     while (TRUE) {
         displayMenu();
-        
+
         char option[3];
         scanf("%s", option);
 

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -88,7 +87,7 @@ void search(course_data *courses, int numberOfCourses) {
 
         char searchValue[BUFFER_SIZE];
         const char *searchCriterion = NULL;
-        
+
         if (strcmp(option, "1") == 0) {
             searchCriterion = "CRN";
         } else if (strcmp(option, "2") == 0) {
@@ -118,7 +117,7 @@ void menu(course_data courses[], int numberOfCourses, int debug) {
     printf("2. View all possible schedules\n");
     printf("3. Search in the file\n");
     printf("4. Exit\n \n");
-    
+
     char option[2];
     scanf("%s", option);
 
@@ -378,7 +377,7 @@ void loadData(int debug, const char* filename) {
         free(resolvedFilename);
         exit(EXIT_FAILURE);
     }
-    
+
     int row = 0;
     while ((getline(&line, &length, file) != -1)) {
         courses[row] = parseCourseData(line);

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 #include "unity.h"
 
@@ -402,7 +401,7 @@ void test_13(void) {
     */
 }
 
-// Testing 
+// Testing
 void test_14(void) {
     course_data *course1 = malloc(sizeof(course_data));
     if (course1 == NULL) {
@@ -563,15 +562,15 @@ void test_getMaxLengths(void) {
     courses[0].days = "M W";
     courses[0].subject = "MATH";
     courses[0].title = "Mathematics 101";
-    
+
     courses[1].days = "M";
     courses[1].subject = "CS";
     courses[1].title = "Data Structures";
-    
+
     courses[2].days = "T R";
     courses[2].subject = "CHEM";
     courses[2].title = "General Chemistry";
-    
+
     courses[3].days = "W";
     courses[3].subject = "PHYS";
     courses[3].title = "Physics Fundamentals";
@@ -582,7 +581,7 @@ void test_getMaxLengths(void) {
     int countSubjects = 4;
 
     getMaxLengths(courses, countSubjects, &maxLengthOfDays, &maxLengthOfSubject, &maxLengthOfTitle);
-    
+
     TEST_ASSERT_EQUAL(3, maxLengthOfDays);     // "M W" has 3 characters
     TEST_ASSERT_EQUAL(4, maxLengthOfSubject);  // "MATH" has 4 characters
     TEST_ASSERT_EQUAL(20, maxLengthOfTitle);   // "Physics Fundamentals" has 20 characters
@@ -597,7 +596,7 @@ void test_empty_courses(void) {
     int countSubjects = 0;
 
     getMaxLengths(courses, countSubjects, &maxLengthOfDays, &maxLengthOfSubject, &maxLengthOfTitle);
-    
+
     TEST_ASSERT_EQUAL(0, maxLengthOfDays);
     TEST_ASSERT_EQUAL(0, maxLengthOfSubject);
     TEST_ASSERT_EQUAL(0, maxLengthOfTitle);
@@ -677,6 +676,6 @@ int main(void) {
     RUN_TEST(test_countNumberOfSeminars_single_seminar);
     RUN_TEST(test_countNumberOfSeminars_leading_trailing_spaces);
     RUN_TEST(test_countNumberOfSeminars_multiple_spaces_between_words);
-    
+
     return UNITY_END();
 }

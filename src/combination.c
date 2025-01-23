@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 #include <time.h>
 
@@ -33,7 +32,7 @@ void printSubjectDetails(const char *subjects[], const char *titles[], int repea
     for (int i = 0; i < countSubjects; i++) {
         int titleLength = strlen(titles[i]);
         int subjectLength = strlen(subjects[i]);
-    
+
         if (titleLength > maxLengthOfTitle) {
             maxLengthOfTitle = titleLength;
         }
@@ -69,7 +68,7 @@ int countDistinctSubjects(course_data courses[], int numberOfCourses) {
     return uniqueSubjectCount;
 }
 
-int countRepeatedCourses(course_data courses[], int numberOfCourses, 
+int countRepeatedCourses(course_data courses[], int numberOfCourses,
                         const char *searchTitle) {
     if (searchTitle == NULL) {
         return -1;
@@ -146,7 +145,7 @@ CombinationData initializeCombination(int repeatedCourses[], int countSubjects) 
 }
 
 int isSeminarMatch(const course_data* course1, const course_data* course2) {
-    return findSeminars(course1->seminars, course2->crn) || 
+    return findSeminars(course1->seminars, course2->crn) ||
            findSeminars(course2->seminars, course1->crn);
 }
 
@@ -156,10 +155,10 @@ int isValidSchedule(int isSeminar, int seminarCheck,
            (!isSeminar && numberOfPossibleClasses == numberOfAllClasses);
 }
 
-void validateSchedule(const course_data** generatedSchedule, CombinationData data, 
-                      int *countPossibleSchedules, int countSubjects, int isSeminar, 
+void validateSchedule(const course_data** generatedSchedule, CombinationData data,
+                      int *countPossibleSchedules, int countSubjects, int isSeminar,
                       int numberOfAllClasses, int row) {
-    
+
     int numberOfPossibleClasses = 0;
     int dontContinue = FALSE;
     int seminarCheck = FALSE;
@@ -189,7 +188,7 @@ void validateSchedule(const course_data** generatedSchedule, CombinationData dat
             if (isSeminarMatch(&course1, &course2)) {
                 seminarCheck = TRUE;
             }
-            
+
             if (typeOfDebug == 1 || typeOfDebug == 3) {
                 printf("%s | %s\n", course1.crn, course2.crn);
             }
@@ -230,10 +229,10 @@ void generateCombination(const course_data courses[], int repeatedCourses[], int
 
 void combination(const course_data courses[], int numberOfCourses, int repeatedCourses[],
                 int countSubjects, const char *titles[], const char *subjects[], int creditHours[]) {
-    
+
     int isSeminar = hasSeminars(courses, numberOfCourses);
     CombinationData data = initializeCombination(repeatedCourses, countSubjects);
-    
+
     int countPossibleSchedules = 0;
     int numberOfAllClasses = countSubjects * (countSubjects - 1) / 2;
     const course_data** temp = malloc(countSubjects * sizeof(const course_data*));
@@ -261,7 +260,7 @@ void combination(const course_data courses[], int numberOfCourses, int repeatedC
         printf("Could not allocate memory for possibleSchedules\n");
         exit(-1);
     }
-    
+
     for (int i = 0; i < countPossibleSchedules; i++) {
         possibleSchedules[i] = malloc(countSubjects * sizeof(course_data));
         if (possibleSchedules[i] == NULL) {
@@ -313,7 +312,7 @@ void combination(const course_data courses[], int numberOfCourses, int repeatedC
 
 void dataProcessor(course_data courses[], int numberOfCourses, int debug) {
     setDebugLevel(debug);
-    
+
     int countSubjects = countDistinctSubjects(courses, numberOfCourses);
     if (countSubjects < 2) {
         printf("\nNo need to calculate anything!\n");
