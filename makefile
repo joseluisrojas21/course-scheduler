@@ -23,7 +23,7 @@ OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 EXEC = $(BIN_DIR)/scheduler
 
 # Target to build the executable and then run tests
-all: $(EXEC)
+all: build $(EXEC)
 	$(MAKE) -C $(TEST_DIR)
 
 # Link the object files into the final executable
@@ -31,7 +31,7 @@ $(EXEC): $(OBJ_FILES)
 	$(CC) $(OBJ_FILES) -o $(EXEC)
 
 # Compile source files into object files in the build directory
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 test:
@@ -50,6 +50,6 @@ $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
 # Build the object files and executable
-build: $(OBJ_DIR) $(BIN_DIR) $(EXEC)
+build: $(OBJ_DIR) $(BIN_DIR)
 
 .PHONY: all clean build test
